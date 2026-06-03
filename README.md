@@ -7,7 +7,7 @@
 [![Django versions](https://img.shields.io/pypi/djversions/django-zatca)](https://pypi.org/project/django-zatca/)
 [![License](https://img.shields.io/github/license/aghfatehi/django-zatca)](https://github.com/aghfatehi/django-zatca)
 
-معالجة الفوترة الإلكترونية وفق متطلبات هيئة الزكاة والضريبة والجمارك (زاتكا) - نظام فاتورة
+معالجة الفوترة الإلكترونية وفق متطلبات هيئة الزكاة والضريبة والجمارك (zatca) - نظام فاتورة
 
 ---
 

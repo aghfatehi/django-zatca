@@ -1,0 +1,4 @@
+# Development requirements
+pytest>=6
+pytest-django>=4
+tox>=3

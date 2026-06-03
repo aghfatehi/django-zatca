@@ -1,0 +1,46 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="django-zatca",
+    version="1.0.0",
+    description="ZATCA (Fatoora) e-invoicing integration for Django - Saudi Arabia VAT e-invoicing",
+    long_description=open("README.md", encoding="utf-8").read(),
+    long_description_content_type="text/markdown",
+    author="AL-AGHBARIFatehi",
+    author_email="fathi.a.n2002@gmail.com",
+    url="https://github.com/aghfatehi/django-zatca",
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=[
+        "django>=2.2",
+    ],
+    extras_require={
+        "dev": [
+            "pytest>=6",
+            "pytest-django>=4",
+            "tox>=3",
+        ],
+    },
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Environment :: Web Environment",
+        "Framework :: Django",
+        "Framework :: Django :: 2.2",
+        "Framework :: Django :: 3.2",
+        "Framework :: Django :: 4.0",
+        "Framework :: Django :: 5.0",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Topic :: Office/Business :: Financial",
+        "Topic :: Security :: Cryptography",
+    ],
+    python_requires=">=3.7",
+)

@@ -1,0 +1,4 @@
+include django_zatca/migrations/*.py
+include django_zatca/templates/*.html
+recursive-include django_zatca/templates *
+recursive-include tests *

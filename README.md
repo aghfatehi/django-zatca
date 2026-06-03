@@ -2,10 +2,10 @@
 
 **ZATCA (Fatoora) e-invoicing integration for Django — Saudi Arabia VAT e-invoicing**
 
-[![PyPI version](https://img.shields.io/pypi/v/django-zatca)](https://pypi.org/project/django-zatca/)
-[![Python versions](https://img.shields.io/pypi/pyversions/django-zatca)](https://pypi.org/project/django-zatca/)
-[![Django versions](https://img.shields.io/pypi/djversions/django-zatca)](https://pypi.org/project/django-zatca/)
-[![License](https://img.shields.io/github/license/aghfatehi/django-zatca)](https://github.com/aghfatehi/django-zatca)
+[![PyPI Version](https://img.shields.io/pypi/v/django-zatca?label=PyPI&color=blue)](https://pypi.org/project/django-zatca/)
+[![Django](https://img.shields.io/badge/Django-2.2%20|%203.2%20|%204.2%20|%205.0%20|%205.1-green.svg)](https://www.djangoproject.com/)
+[![Python](https://img.shields.io/badge/Python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11%20|%203.12%20|%203.13-blue.svg)](https://python.org)
+[![License](https://img.shields.io/github/license/aghfatehi/django-zatca)](LICENSE)
 
 معالجة الفوترة الإلكترونية وفق متطلبات هيئة الزكاة والضريبة والجمارك (zatca) - نظام فاتورة
 

@@ -6,6 +6,9 @@
 [![Django](https://img.shields.io/badge/Django-2.2%20|%203.2%20|%204.2%20|%205.0%20|%205.1%20|%205.2%20|%206.0-green.svg)](https://www.djangoproject.com/)
 [![Python](https://img.shields.io/badge/Python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11%20|%203.12%20|%203.13-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Author](https://img.shields.io/badge/Author-AL--AGHBARI%20Fatehi-blue)](https://github.com/aghfatehi)
+
+**Author:** [AL-AGHBARI Fatehi](https://github.com/aghfatehi) &mdash; *فتحي الأغبري*
 
 معالجة الفوترة الإلكترونية وفق متطلبات هيئة الزكاة والضريبة والجمارك (zatca) - نظام فاتورة
 

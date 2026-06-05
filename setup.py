@@ -6,7 +6,7 @@ setup(
     description="ZATCA (Fatoora) e-invoicing integration for Django - Saudi Arabia VAT e-invoicing",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    author="AL-AGHBARIFatehi",
+    author="AL-AGHBARI Fatehi",
     author_email="fathi.a.n2002@gmail.com",
     url="https://github.com/aghfatehi/django-zatca",
     packages=find_packages(),

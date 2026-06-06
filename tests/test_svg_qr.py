@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django_zatca.services.svg_qr import SvgQrGenerator
+from django_zatca.services.svg_qr import SvgQrGenerator, _select_version, _rs_blocks
 
 
 class SvgQrGeneratorTestCase(TestCase):
@@ -32,3 +32,39 @@ class SvgQrGeneratorTestCase(TestCase):
         gen = SvgQrGenerator()
         svg = gen.generate(b"\x01\x02XY", output_size=300)
         self.assertIn('width="300"', svg)
+
+    def test_select_version_uses_rs_data_capacity(self):
+        """_select_version must use RS block data capacity, not total codewords from VERSION_INFO."""
+        from django_zatca.services.svg_qr import _get_max_data_length
+        # v1 RS data = 19, VERSION_INFO[2] = 26. Data of 20 should NOT select v1 (can only hold 17 after overhead)
+        self.assertNotEqual(_select_version(20), 1)
+        # v1 max data length after overhead = 17
+        self.assertEqual(_get_max_data_length(19, 1), 17)
+        self.assertEqual(_select_version(17), 1)
+        # v2 max data length after overhead = 32
+        self.assertEqual(_get_max_data_length(34, 2), 32)
+        self.assertEqual(_select_version(32), 2)
+
+    def test_data_preserved_across_versions(self):
+        """QR encode/decode must preserve all input data bytes."""
+        gen = SvgQrGenerator()
+        for size in range(1, 200):
+            data = bytes([i % 256 for i in range(size)])
+            tlv = b"\x01" + bytes([size]) + data
+            try:
+                svg = gen.generate(tlv)
+                self.assertIn("<svg", svg, f"Failed for {size} bytes of data")
+            except RuntimeError as e:
+                self.fail(f"RuntimeError at {size} bytes: {e}")
+
+    def test_encode_version_1_data_limit(self):
+        """v1 has 19 data bytes via RS blocks, but 17 bytes after overhead."""
+        v1_capacity = sum(b["data"] for b in _rs_blocks(1))
+        self.assertEqual(v1_capacity, 19)
+        from django_zatca.services.svg_qr import _get_max_data_length
+        v1_max = _get_max_data_length(v1_capacity, 1)
+        self.assertEqual(v1_max, 17)
+        # 17 bytes fits in v1
+        self.assertEqual(_select_version(17), 1)
+        # 18 bytes requires v2
+        self.assertEqual(_select_version(18), 2)

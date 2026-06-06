@@ -89,9 +89,18 @@ def _rs_blocks(version):
     return [{"data": data, "ec": ec} for _ in range(num_blocks)]
 
 
+def _get_max_data_length(total_data_bytes, version):
+    """Max bytes of actual data that fit, accounting for mode + count overhead."""
+    char_count_bits = 8 if version < 10 else 16
+    overhead_bits = 4 + char_count_bits
+    max_data_bits = (total_data_bytes * 8) - overhead_bits
+    return max_data_bits // 8
+
+
 def _select_version(data_len):
-    for v, info in enumerate(VERSION_INFO, 1):
-        if data_len <= info[2]:
+    for v in range(1, 11):
+        capacity = sum(b["data"] for b in _rs_blocks(v))
+        if data_len <= _get_max_data_length(capacity, v):
             return v
     return 10
 
@@ -167,8 +176,9 @@ class SvgQrGenerator:
     def _encode_data(self, data, version):
         mode = 0b0100
         char_count = len(data)
-        total_bytes = VERSION_INFO[version - 1][2]
-        total_bits = total_bytes * 8
+        blocks = _rs_blocks(version)
+        total_data_bytes = sum(b["data"] for b in blocks)
+        total_bits = total_data_bytes * 8
         char_count_bits = 8 if version < 10 else 16
 
         bits = []
@@ -198,11 +208,10 @@ class SvgQrGenerator:
 
         pad = [236, 17]
         pi = 0
-        while len(ba) < total_bytes:
+        while len(ba) < total_data_bytes:
             ba.append(pad[pi % 2])
             pi += 1
 
-        blocks = _rs_blocks(version)
         data_chunks = []
         ec_chunks = []
         remaining = list(ba)

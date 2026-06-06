@@ -48,3 +48,19 @@ class ZatcaService:
         if self.is_phase2_enabled():
             logger.warning("Phase 2 QR requires signed invoice. Use phase2().sign_invoice() instead.")
         return self._phase1.generate_qr_code_from_invoice(invoice, egs_unit)
+
+    def generate_phase2_qr(self, seller_name, vat_number, invoice_date,
+                           total_amount, tax_amount, invoice_hash,
+                           digital_signature, public_key, certificate_signature):
+        from .qr_code import generate_phase2_qr as _gen_p2
+        return _gen_p2(
+            seller_name=seller_name,
+            vat_number=vat_number,
+            invoice_date=invoice_date,
+            total_amount=total_amount,
+            tax_amount=tax_amount,
+            invoice_hash=invoice_hash,
+            digital_signature=digital_signature,
+            public_key=public_key,
+            certificate_signature=certificate_signature,
+        )

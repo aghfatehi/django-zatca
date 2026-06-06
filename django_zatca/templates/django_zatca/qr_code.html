@@ -1,7 +1,2 @@
-<svg width="{{ size }}" height="{{ size }}" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100%" height="100%" fill="#fff"/>
-    <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central"
-          font-family="monospace" font-size="12" fill="#000">
-        QR
-    </text>
-</svg>
+{% load zatca_qr %}
+{% zatca_qr qr_data size %}
